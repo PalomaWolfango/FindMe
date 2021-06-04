@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_pagina_inicial"
+        android:icon="@drawable/ic_menu_pata"
+        android:title="Ínicio"
+        />
+
+    <item
+        android:id="@+id/ic_adicionar"
+        android:icon="@drawable/ic_menu_adicionar"
+        android:title="Adicionar"/>
+
+    <item
+        android:id="@+id/ic_chat"
+        android:icon="@drawable/ic_menu_chat"
+        android:title="Conversas"/>
+
+    <item
+        android:id="@+id/ic_conta"
+        android:icon="@drawable/ic_menu_person"
+        android:title="Conta"/>
+
+</menu>
