@@ -14,12 +14,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  supportActionBar?.hide()
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
 
 
-        login_button_login.setOnClickListener {
+        btn.setOnClickListener {
             val email = insertUser.text.toString()
             val password = insertPassword.text.toString()
 

@@ -75,7 +75,7 @@
 
 
     <Button
-        android:id="@+id/login_button_login"
+        android:id="@+id/btn"
         android:layout_width="@dimen/DP01"
         android:layout_height="wrap_content"
         android:layout_below="@+id/insertPassword"
@@ -90,7 +90,7 @@
         android:id="@+id/textView_05"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_button_login"
+        android:layout_below="@+id/btn"
         android:layout_centerHorizontal="true"
         android:text="@string/registo"
         android:layout_marginTop="30dp"
