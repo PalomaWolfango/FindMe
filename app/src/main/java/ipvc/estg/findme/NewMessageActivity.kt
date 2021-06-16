@@ -1,4 +1,4 @@
-package ipvc.estg.findme
+ package ipvc.estg.findme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
