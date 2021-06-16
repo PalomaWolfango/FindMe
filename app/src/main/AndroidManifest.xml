@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindMe">
-        <activity android:name=".DetalhePostActivity"></activity>
+        <activity android:name=".InserirDesaparecimento"></activity>
+        <activity android:name=".DetalhePostActivity" />
         <activity android:name=".MenuTesteActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
