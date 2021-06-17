@@ -13,7 +13,14 @@
         <activity android:name=".MenuTesteActivity" />
         <activity android:name=".InserirAparecimento"></activity>
         <activity android:name=".InserirDesaparecimento" />
-        <activity android:name=".DetalhePostActivity" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".LatestMessagesActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
