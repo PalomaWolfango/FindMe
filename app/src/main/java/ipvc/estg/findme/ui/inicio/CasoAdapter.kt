@@ -1,13 +1,17 @@
 package ipvc.estg.findme.ui.inicio
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ipvc.estg.findme.R
 import ipvc.estg.findme.dataclasses.ItemsViewModel
+import ipvc.estg.findme.MenuTesteActivity
 
 class CasoAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CasoAdapter.ViewHolder>() {
 
@@ -31,6 +35,16 @@ class CasoAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
         holder.raca.text = ItemsViewModel.raca
         holder.data.text = ItemsViewModel.data
         holder.localidade.text = ItemsViewModel.localidade
+
+        holder.itemView.setOnClickListener {
+            // abrir activity de ver detalhes do caso
+            //val intent = Intent(it.context, OpenCasoActivity::class.java)
+            // To pass any data to next activity
+            //intent.putExtra("casoId", CasoId.toString())
+            // Start your next activity
+            //it.context.startActivity(intent)
+            Toast.makeText(it.context, "Clicked!", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
