@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalhePost"
+    android:background="@color/fundo">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_branco"
+        android:layout_margin="15dp">
+
+            <ImageView
+                android:id="@+id/image_view_detalhe"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp" />
+
+            <TextView
+                android:id="@+id/txt_raca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_view_detalhe"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:text="Raça"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/ed_txt_raca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_view_detalhe"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/txt_raca"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/edit_text_border"
+                android:lines="2" />
+
+            <TextView
+                android:id="@+id/txt_sexo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_raca"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="30dp"
+                android:text="Sexo"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/ed_txt_sexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_txt_raca"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/txt_sexo"
+                android:background="@drawable/edit_text_border"
+                android:layout_marginLeft="150dp"
+                android:layout_alignParentLeft="true"
+                android:lines="2" />
+
+            <TextView
+                android:id="@+id/txt_tamanho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_sexo"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="35dp"
+                android:text="Tamanho"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/ed_txt_tamanho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_txt_sexo"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/txt_tamanho"
+                android:background="@drawable/edit_text_border"
+                android:layout_marginLeft="150dp"
+                android:layout_alignParentLeft="true"
+                android:lines="2" />
+
+            <TextView
+                android:id="@+id/n_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_tamanho"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="35dp"
+                android:text="Nº Chip"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/ed_txt_n_chip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_txt_tamanho"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/n_chip"
+                android:background="@drawable/edit_text_border"
+                android:lines="2"
+                android:layout_marginLeft="150dp"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/txt_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/n_chip"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="35dp"
+                android:text="Data"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/ed_txt_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_txt_n_chip"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:layout_toRightOf="@+id/txt_data"
+                android:background="@drawable/edit_text_border"
+                android:lines="2"
+                android:layout_marginLeft="150dp"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/txt_descricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_data"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="40dp"
+                android:text="Descrição"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/ed_txt_descricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_descricao"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/edit_text_border"
+                android:lines="7" />
+
+
+            <Button
+                android:id="@+id/btn_encontrar_animal"
+                android:layout_width="@dimen/DP01"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_txt_descricao"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/button_shape"
+                android:text="Encontrei o seu animal"
+                app:backgroundTint="@color/yellow" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
+</ScrollView>
