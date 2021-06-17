@@ -8,4 +8,7 @@ class DetalhePost : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhe_post)
     }
+
+    //commit Dev
+
 }

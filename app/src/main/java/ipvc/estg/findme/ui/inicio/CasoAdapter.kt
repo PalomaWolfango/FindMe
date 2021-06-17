@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import ipvc.estg.findme.DetalhePost
 import ipvc.estg.findme.R
 import ipvc.estg.findme.dataclasses.ItemsViewModel
 import ipvc.estg.findme.MenuTesteActivity
@@ -38,12 +39,12 @@ class CasoAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
 
         holder.itemView.setOnClickListener {
             // abrir activity de ver detalhes do caso
-            //val intent = Intent(it.context, OpenCasoActivity::class.java)
+            val intent = Intent(it.context, DetalhePost::class.java)
             // To pass any data to next activity
-            //intent.putExtra("casoId", CasoId.toString())
+            //in tent.putExtra("casoId", CasoId.toString())
             // Start your next activity
-            //it.context.startActivity(intent)
-            Toast.makeText(it.context, "Clicked!", Toast.LENGTH_SHORT).show()
+            it.context.startActivity(intent)
+            //Toast.makeText(it.context, "Clicked!", Toast.LENGTH_SHORT).show()
         }
 
     }

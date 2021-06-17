@@ -20,4 +20,8 @@ interface EndPoints {
                        @Field("idUser") idUser: String?,
                        @Field("TipoReport") TipoReport: Int?): Call<OutputReports>
 
+    //Obter report pelo id
+    @GET("/MySlim/api/getreport/{idReport}")
+    fun obterReportId(@Path("idReport") tipo:String): retrofit2.Call<List<OutputReports>>
+
 }
