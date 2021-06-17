@@ -64,10 +64,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to log in: ${it.message}", Toast.LENGTH_SHORT).show()
             }
         }
-
+/*
      class User(val uid: String, val username: String, val  profileImageUrl: String){
          constructor() : this("","","")
-     }
+     }*/
 
     }
 

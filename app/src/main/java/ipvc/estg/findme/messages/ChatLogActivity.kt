@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import ipvc.estg.findme.NewMessageActivity
 import ipvc.estg.findme.R
+import ipvc.estg.findme.models.User
 import kotlinx.android.synthetic.main.activity_chat_log.*
 
 class ChatLogActivity : AppCompatActivity() {
@@ -13,11 +15,18 @@ class ChatLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
-        supportActionBar?.title = "Chat Log"
+        //val username = intent.getStringExtra(NewMessageActivity.USER_KEY)
 
+        val user = intent.getParcelableExtra<User>(NewMessageActivity.USER_KEY)
+
+        supportActionBar?.title = user?.username
 
         val adapter = GroupAdapter<ViewHolder>()
 
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
         adapter.add(ChatFromItem())
         adapter.add(ChatToItem())
         adapter.add(ChatFromItem())
