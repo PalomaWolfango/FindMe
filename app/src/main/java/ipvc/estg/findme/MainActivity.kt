@@ -41,8 +41,10 @@ class MainActivity : AppCompatActivity() {
                 Log.e("TAG", msg)
             }
 
-        val ss:String = intent.getStringExtra("idAnimal").toString()
+        if(intent.hasExtra("idAnimal")){
+            val ss:String = intent.getStringExtra("idAnimal").toString()
 
+        }
 
         //teste commit
     }
