@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Contacts.SettingsColumns.KEY
 import android.util.Log
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,8 +20,9 @@ import ipvc.estg.findme.messages.ChatLogActivity
 import ipvc.estg.findme.models.User
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
+import java.security.AccessController.getContext
 
-class NewMessageActivity : AppCompatActivity() {
+ class NewMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
@@ -28,14 +30,10 @@ class NewMessageActivity : AppCompatActivity() {
         supportActionBar?.title = "Selecionar Utilizador"
 
 
-        /*val adapter = GroupAdapter<ViewHolder>()
+        recyclerview_newmessage.adapter = adapter
+        recyclerview_newmessage.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+       
 
-
-        adapter.add(UserItem())
-        adapter.add(UserItem())
-        adapter.add(UserItem())
-
-        recyclerview_newmessage.adapter = adapter*/
 
         fetchUsers()
 
@@ -47,6 +45,7 @@ class NewMessageActivity : AppCompatActivity() {
     }
 
 
+    val adapter = GroupAdapter<ViewHolder>()
 
 
     private fun fetchUsers() {
@@ -54,7 +53,7 @@ class NewMessageActivity : AppCompatActivity() {
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onDataChange(p0: DataSnapshot) {
-                val adapter = GroupAdapter<ViewHolder>()
+               // val adapter = GroupAdapter<ViewHolder>()
 
                 p0.children.forEach {
                     Log.d("NewMessage", it.toString())
@@ -78,7 +77,7 @@ class NewMessageActivity : AppCompatActivity() {
                 }
 
 
-                recyclerview_newmessage.adapter = adapter
+               // recyclerview_newmessage.adapter = adapter
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -92,7 +91,7 @@ class NewMessageActivity : AppCompatActivity() {
 class UserItem( val user: User) : Item<ViewHolder>() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.username_textview_new_message.text = user.username
-        Picasso.get().load(user.profileImageUrl).into(viewHolder.itemView.imageview_new_message)
+
     }
 
     override fun getLayout(): Int {
