@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun irMenu(view: View) {
-        val intent = Intent(this, MenuTesteActivity::class.java)
+        val intent = Intent(this, InserirAparecimento::class.java)
         startActivity(intent)
     }
 }
