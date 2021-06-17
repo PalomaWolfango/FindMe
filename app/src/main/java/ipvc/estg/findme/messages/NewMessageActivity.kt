@@ -1,5 +1,6 @@
 package ipvc.estg.findme
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,8 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import ipvc.estg.findme.login.MainActivity
+import ipvc.estg.findme.messages.ChatLogActivity
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
 
@@ -52,6 +55,14 @@ class NewMessageActivity : AppCompatActivity() {
                     if (user != null) {
                         adapter.add(UserItem(user))
                     }
+                }
+
+                adapter.setOnItemClickListener { item, view ->
+                    val intent = Intent(view.context , ChatLogActivity::class.java)
+                    startActivity(intent)
+                    finish()
+
+
                 }
 
 

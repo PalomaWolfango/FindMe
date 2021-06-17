@@ -1,18 +1,15 @@
-package ipvc.estg.findme
+package ipvc.estg.findme.login
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.content.Intent
-import android.hardware.SensorManager
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import ipvc.estg.findme.R
+import ipvc.estg.findme.messages.LatestMessagesActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

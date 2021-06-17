@@ -1,4 +1,4 @@
-package ipvc.estg.findme
+package ipvc.estg.findme.messages
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
+import ipvc.estg.findme.login.MainActivity
+import ipvc.estg.findme.NewMessageActivity
+import ipvc.estg.findme.R
 
 class LatestMessagesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
