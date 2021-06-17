@@ -42,10 +42,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun irMenu(view: View) {
+    //Botão Menu teste
+    /*fun irMenu(view: View) {
         val intent = Intent(this, MenuTesteActivity::class.java)
         startActivity(intent)
-    }
+    }*/
 
 
 
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
                 Log.d("Login", "Successfully logged in: ${it.result?.user?.uid}")
 
-                val intent = Intent(this, LatestMessagesActivity::class.java)
+                val intent = Intent(this, MenuTesteActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }

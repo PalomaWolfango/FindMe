@@ -43,7 +43,9 @@
         android:layout_marginEnd="@dimen/DP03"
         android:layout_marginRight="@dimen/DP03"
         android:lines="2"
-        android:background="@drawable/edit_text_border"/>
+        android:background="@drawable/edit_text_border"
+        android:inputType="text"
+        android:padding="10dp"/>
 
     <TextView
         style="@style/textoNormal"
@@ -68,10 +70,10 @@
         android:layout_marginLeft="@dimen/DP03"
         android:layout_marginEnd="@dimen/DP03"
         android:layout_marginRight="@dimen/DP03"
-        android:lines="2"
-        android:background="@drawable/edit_text_border"/>
-
-
+        android:background="@drawable/edit_text_border"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:lines="2" />
 
 
     <Button
@@ -96,17 +98,17 @@
         android:layout_marginTop="30dp"
         android:textSize="15dp"
         android:textColor="@color/white"
-        android:clickable="true" />
+        android:clickable="true"/>
 
 
 
 
 
 
-    <Button
+   <!-- <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="MENU TESTE"
-        android:onClick="irMenu"/>
+        android:onClick="irMenu"/>-->
 
 </RelativeLayout>
