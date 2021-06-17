@@ -3,9 +3,13 @@ package ipvc.estg.findme
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import ipvc.estg.findme.login.MainActivity
+import ipvc.estg.findme.messages.LatestMessagesActivity
 import ipvc.estg.findme.ui.inicio.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_menu_teste.*
 import kotlinx.android.synthetic.main.fragment_inicio.view.*
@@ -13,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_inicio.view.*
 
 class MenuTesteActivity : AppCompatActivity() {
     internal lateinit var viewpageradapter: ViewPagerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_teste)
@@ -30,12 +35,14 @@ class MenuTesteActivity : AppCompatActivity() {
                     startActivity(a)
                 }
                 R.id.ic_chat -> {
-                    //val b = Intent(this, ActivityChat::class.java)
-                    //startActivity(b)
+                    val b = Intent(this, LatestMessagesActivity::class.java)
+                    startActivity(b)
                 }
-                R.id.ic_conta -> {
-                    //val c = Intent(this, ActivityConta::class.java)
-                    //startActivity(c)
+                R.id.menu_sign_out -> {
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
                 }
             }
             false

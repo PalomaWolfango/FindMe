@@ -12,6 +12,7 @@ import ipvc.estg.findme.R
 import ipvc.estg.findme.messages.LatestMessagesActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.View
+import ipvc.estg.findme.MenuTesteActivity
 
 class MainActivity : AppCompatActivity() {
 

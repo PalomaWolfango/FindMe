@@ -17,6 +17,7 @@ import androidx.core.graphics.drawable.toBitmap
 import ipvc.estg.findme.API.EndPoints
 import ipvc.estg.findme.API.OutputReports
 import ipvc.estg.findme.API.ServiceBuilder
+import ipvc.estg.findme.login.MainActivity
 import kotlinx.android.synthetic.main.activity_inserir_aparecimento.*
 import kotlinx.android.synthetic.main.activity_inserir_desaparecimento.*
 import kotlinx.android.synthetic.main.activity_inserir_desaparecimento.photo_btn
