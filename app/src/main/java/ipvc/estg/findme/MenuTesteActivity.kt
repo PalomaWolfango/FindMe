@@ -31,7 +31,7 @@ class MenuTesteActivity : AppCompatActivity() {
                 R.id.ic_pagina_inicial -> {
                 }
                 R.id.ic_adicionar -> {
-                    val a = Intent(this, InserirAparecimento::class.java)
+                    val a = Intent(this, AnuncioActivity::class.java)
                     startActivity(a)
                 }
                 R.id.ic_chat -> {
