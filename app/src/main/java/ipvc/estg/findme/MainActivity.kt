@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
             if (msg != null) {
                 Log.e("TAG", msg)
             }
-            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
         })
 
         Firebase.messaging.subscribeToTopic("animais")
@@ -40,8 +39,10 @@ class MainActivity : AppCompatActivity() {
                     msg = "nao subscriot"
                 }
                 Log.e("TAG", msg)
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             }
+
+        val ss:String = intent.getStringExtra("idAnimal").toString()
+
 
         //teste commit
     }
