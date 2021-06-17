@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.view.View
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
+import ipvc.estg.findme.AnuncioActivity
+import ipvc.estg.findme.DetalhePost
 import ipvc.estg.findme.MenuTesteActivity
 
 class MainActivity : AppCompatActivity() {
@@ -28,24 +31,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_main)
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.e("TAG", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-            val msg = token
-            if (msg != null) {
-                Log.e("TAG", msg)
-            }
-        })
-
         if(intent.hasExtra("idAnimal")){
             val ss:String = intent.getStringExtra("idAnimal").toString()
+
+            val intent = Intent(this, DetalhePost::class.java)
+
+            startActivity(intent)
         }
 
         //teste commit
