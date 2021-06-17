@@ -14,6 +14,8 @@ import com.google.firebase.ktx.Firebase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import ipvc.estg.findme.AnuncioActivity
+import ipvc.estg.findme.MenuTesteActivity
 import ipvc.estg.findme.login.MainActivity
 import ipvc.estg.findme.NewMessageActivity
 import ipvc.estg.findme.NewMessageActivity.Companion.USER_KEY
@@ -22,6 +24,8 @@ import ipvc.estg.findme.models.ChatMessage
 import ipvc.estg.findme.models.User
 import ipvc.estg.findme.views.LatestMessageRow
 import kotlinx.android.synthetic.main.activity_latest_messages.*
+import kotlinx.android.synthetic.main.activity_latest_messages.bottomNavigationView2
+import kotlinx.android.synthetic.main.activity_menu_teste.*
 import kotlinx.android.synthetic.main.latest_message_row.view.*
 
 class LatestMessagesActivity : AppCompatActivity() {
@@ -34,6 +38,29 @@ class LatestMessagesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
+
+        bottomNavigationView2.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.ic_pagina_inicial -> {
+                    true
+                }
+                R.id.ic_adicionar -> {
+                    val intent = Intent(this, AnuncioActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.ic_chat -> {
+                    val intent = Intent(this, LatestMessagesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                /*R.id.menu_sign_out -> {
+
+                    true
+                }*/
+                else -> false
+            }
+        }
 
         recyclerview_latest_messages.adapter = adapter
         recyclerview_latest_messages.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -155,7 +182,7 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item?.itemId) {
-            R.id.menu_new_message -> {
+            R.id.menu_new_message2 -> {
                 val intent = Intent(this, NewMessageActivity::class.java)
                 startActivity(intent)
             }

@@ -18,9 +18,9 @@
         android:icon="@drawable/ic_menu_chat"
         android:title="Conversas"/>
 
-    <item
+    <!--<item
         android:id="@+id/menu_sign_out"
         android:icon="@drawable/sign_out"
-        android:title="Sign Out" />
+        android:title="Sign Out" />-->
 
 </menu>
