@@ -48,12 +48,11 @@ class CasoAdapter(private val mList: List<Reports>) : RecyclerView.Adapter<CasoA
 
         holder.itemView.setOnClickListener {
             // abrir activity de ver detalhes do caso
-            //val intent = Intent(it.context, DetalhePost::class.java)
+            val intent = Intent(it.context, DetalhePost::class.java)
             // To pass any data to next activity
-            //intent.putExtra("idReport", ItemsViewModel.idReport.toString())
+            intent.putExtra("idCaso", ItemsViewModel.idReport.toString())
             // Start your next activity
-            //it.context.startActivity(intent)
-            Toast.makeText(it.context, "Clicked report: " + ItemsViewModel.idReport, Toast.LENGTH_SHORT).show()
+            it.context.startActivity(intent)
         }
 
     }
