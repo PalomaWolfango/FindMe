@@ -7,7 +7,7 @@ data class OutputReports(
     val raca: Double,
     val tamanho: Double,
     val sexo: Int,
-    val localização: String,
+    val localizacao: String,
     val data: String,
     val descricao: Double,
     val chip: Int,

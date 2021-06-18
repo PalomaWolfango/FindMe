@@ -15,7 +15,9 @@ class AnuncioActivity : AppCompatActivity() {
         bottomNavigationView2.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_pagina_inicial -> {
-                    val intent = Intent(this, MenuTesteActivity::class.java)
+                    val intent = Intent(this, MenuTesteActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                     startActivity(intent)
                     true
                 }
@@ -23,7 +25,9 @@ class AnuncioActivity : AppCompatActivity() {
                     true
                 }
                 R.id.ic_chat -> {
-                    val intent = Intent(this, LatestMessagesActivity::class.java)
+                    val intent = Intent(this, LatestMessagesActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                     startActivity(intent)
                     true
                 }
