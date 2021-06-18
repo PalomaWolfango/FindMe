@@ -39,14 +39,14 @@ class ListaEncontradosFragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_listar, container, false)
 
         val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getReports(0)
+        val call = request.getReports(1)
         call.enqueue(object : Callback<List<Reports>> {
             override fun onResponse(
                 call: retrofit2.Call<List<Reports>>,
                 response: Response<List<Reports>>
             ) {
                 if (response.body() != null) {
-                    progressBar.visibility = View.INVISIBLE
+                    progressBar.visibility = View.GONE
                     reports = response.body()!!
                     // recycler view
                     val recyclerView: RecyclerView = view.recyclerCasos
@@ -55,7 +55,7 @@ class ListaEncontradosFragment : Fragment() {
                     recyclerView.adapter = adapter
                 }
                 else {
-                    progressBar.visibility = View.INVISIBLE
+                    progressBar.visibility = View.GONE
                     tvSemCasos.visibility = View.VISIBLE
                 }
             }

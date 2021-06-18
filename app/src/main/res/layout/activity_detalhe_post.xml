@@ -1,193 +1,293 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp">
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetalhePost"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp"
     android:background="@color/fundo">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/border_branco"
-        android:layout_margin="15dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".InserirAparecimento">
 
-            <ImageView
-                android:id="@+id/image_view_detalhe"
-                android:layout_width="350dp"
-                android:layout_height="200dp"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp" />
+                <RelativeLayout
+                    android:id="@+id/layout"
+                    android:visibility="invisible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp">
 
-            <TextView
-                android:id="@+id/txt_raca"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/image_view_detalhe"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="15dp"
-                android:text="Raça"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                        <TextView
+                            android:id="@+id/txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_centerHorizontal="true"
+                            android:text="Encontrado"
+                            android:textColor="#FFB703"
+                            android:textSize="50dp" />
 
-            <EditText
-                android:id="@+id/ed_txt_raca"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/image_view_detalhe"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_toRightOf="@+id/txt_raca"
-                android:layout_alignParentLeft="true"
-                android:background="@drawable/edit_text_border"
-                android:lines="2" />
+                        <ImageView
+                            android:id="@+id/imagemAP"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_below="@+id/txt"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/input_multiline"
+                            android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/txt_sexo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_raca"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="30dp"
-                android:text="Sexo"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imagemAP"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="10px"
+                            android:paddingBottom="50px"
+                            app:layout_constraintTop_toBottomOf="@+id/imagemAP"/>
 
-            <EditText
-                android:id="@+id/ed_txt_sexo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ed_txt_raca"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_toRightOf="@+id/txt_sexo"
-                android:background="@drawable/edit_text_border"
-                android:layout_marginLeft="150dp"
-                android:layout_alignParentLeft="true"
-                android:lines="2" />
+                        <TextView
+                            android:id="@+id/txt_raca"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/linearLayout"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="15dp"
+                            android:text="Raça"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:layout_marginStart="25dp" />
 
-            <TextView
-                android:id="@+id/txt_tamanho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_sexo"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="35dp"
-                android:text="Tamanho"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                        <EditText
+                            android:id="@+id/ed_txt_racaAP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_raca"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/txt_raca"
+                            android:background="@drawable/edit_text_border"
+                            android:lines="2"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/white"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_toEndOf="@+id/txt_raca" />
 
-            <EditText
-                android:id="@+id/ed_txt_tamanho"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ed_txt_sexo"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_toRightOf="@+id/txt_tamanho"
-                android:background="@drawable/edit_text_border"
-                android:layout_marginLeft="150dp"
-                android:layout_alignParentLeft="true"
-                android:lines="2" />
+                        <TextView
+                            android:id="@+id/txt_sexo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ed_txt_racaAP"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="25dp"
+                            android:text="Sexo"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:layout_marginStart="25dp" />
 
-            <TextView
-                android:id="@+id/n_chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_tamanho"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="35dp"
-                android:text="Nº Chip"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                        <EditText
+                            android:id="@+id/ed_txt_sexoAP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_sexo"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="200dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/edit_text_border"
+                            android:lines="2"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="200dp"
+                            android:inputType="none"
+                            android:focusable="false" />
 
-            <EditText
-                android:id="@+id/ed_txt_n_chip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ed_txt_tamanho"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_toRightOf="@+id/n_chip"
-                android:background="@drawable/edit_text_border"
-                android:lines="2"
-                android:layout_marginLeft="150dp"
-                android:layout_alignParentLeft="true"/>
+                        <TextView
+                            android:id="@+id/txt_tamanho"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ed_txt_racaAP"
+                            android:layout_alignLeft="@+id/txt_sexo"
+                            android:layout_marginLeft="175dp"
+                            android:layout_marginTop="25dp"
+                            android:text="Tamanho"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:layout_alignStart="@+id/txt_sexo"
+                            android:layout_marginStart="175dp" />
 
-            <TextView
-                android:id="@+id/txt_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/n_chip"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="35dp"
-                android:text="Data"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                        <EditText
+                            android:id="@+id/ed_txt_tamanhoAP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_tamanho"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="200dp"
+                            android:layout_marginTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/txt_tamanho"
+                            android:background="@drawable/edit_text_border"
+                            android:lines="2"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="200dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_toEndOf="@+id/txt_tamanho"
+                            android:inputType="none"
+                            android:focusable="false" />
 
-            <EditText
-                android:id="@+id/ed_txt_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ed_txt_n_chip"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:layout_toRightOf="@+id/txt_data"
-                android:background="@drawable/edit_text_border"
-                android:lines="2"
-                android:layout_marginLeft="150dp"
-                android:layout_alignParentLeft="true"/>
+                        <TextView
+                            android:id="@+id/txt_data"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ed_txt_sexoAP"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="25dp"
+                            android:text="Data do desaparecimento"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:layout_marginStart="25dp" />
 
-            <TextView
-                android:id="@+id/txt_descricao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_data"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="40dp"
-                android:text="Descrição"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                        <EditText
+                            android:id="@+id/ed_txt_dataAP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_data"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/txt_data"
+                            android:background="@drawable/edit_text_border"
+                            android:lines="2"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/white"
+                            android:paddingTop="15px"
+                            android:paddingBottom="30px"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:inputType="none"
+                            android:focusable="false" />
 
-            <EditText
-                android:id="@+id/ed_txt_descricao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/txt_descricao"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/edit_text_border"
-                android:lines="7" />
+                        <TextView
+                            android:id="@+id/txt_localizacao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ed_txt_dataAP"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="25dp"
+                            android:text="Ultima localização:"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:layout_marginStart="25dp" />
 
+                        <EditText
+                            android:id="@+id/ed_txt_localizacaoAP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_localizacao"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_toRightOf="@+id/txt_data"
+                            android:background="@drawable/edit_text_border"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/white"
+                            android:paddingTop="15px"
+                            android:paddingBottom="30px"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_toEndOf="@+id/txt_data"
+                            android:inputType="none"
+                            android:focusable="false" />
 
-            <Button
-                android:id="@+id/btn_encontrar_animal"
-                android:layout_width="@dimen/DP01"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/ed_txt_descricao"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/button_shape"
-                android:text="Encontrei o seu animal"
-                app:backgroundTint="@color/yellow" />
+                        <TextView
+                            android:id="@+id/txt_descricao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ed_txt_localizacaoAP"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="30dp"
+                            android:text="Descrição"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            android:layout_marginStart="25dp" />
 
-    </RelativeLayout>
+                        <EditText
+                            android:id="@+id/ed_txt_descricaoAP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_descricao"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/edit_text_border"
+                            android:lines="7"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:inputType="none"
+                            android:focusable="false" />
+
+                        <Button
+                            android:id="@+id/btn_encontrar_animal"
+                            android:layout_width="@dimen/DP01"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ed_txt_descricaoAP"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="50dp"
+                            android:layout_marginBottom="25dp"
+                            android:background="@drawable/button_shape"
+                            android:text="Encontrei o seu animal"
+                            app:backgroundTint="@color/yellow" />
+
+                </RelativeLayout>
+
+        </ScrollView>
 
 
 </RelativeLayout>
-
-</ScrollView>

@@ -35,7 +35,7 @@ class ListaPerdidosFragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_listar, container, false)
 
         val request = ServiceBuilder.buildService(EndPoints::class.java)
-        val call = request.getReports(1)
+        val call = request.getReports(0)
         call.enqueue(object : Callback<List<Reports>> {
             override fun onResponse(
                 call: retrofit2.Call<List<Reports>>,
