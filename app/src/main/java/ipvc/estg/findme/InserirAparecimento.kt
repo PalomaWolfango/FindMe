@@ -14,10 +14,17 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import ipvc.estg.findme.API.EndPoints
 import ipvc.estg.findme.API.OutputReports
 import ipvc.estg.findme.API.ServiceBuilder
 import ipvc.estg.findme.login.MainActivity
+import ipvc.estg.findme.messages.LatestMessagesActivity
+import ipvc.estg.findme.models.User
 import kotlinx.android.synthetic.main.activity_inserir_aparecimento.*
 import kotlinx.android.synthetic.main.activity_inserir_desaparecimento.*
 import kotlinx.android.synthetic.main.activity_inserir_desaparecimento.photo_btn
@@ -33,11 +40,20 @@ private val IMAGE_PICK_CODE=1005;
 private val PERMISSION_CODE=1006;
 
 class InserirAparecimento : AppCompatActivity() {
+
+    companion object {
+        var currentUser: User? = null
+        var id:String = ""
+        val TAG = "LatestMessages"
+    }
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inserir_aparecimento)
 
+        fetchCurrentUser()
 
         photo_btn.setOnClickListener{
             val tirarPhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -73,14 +89,13 @@ class InserirAparecimento : AppCompatActivity() {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
                 val encodedImage = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray())
 
-                val call = request.adicionarPonto(raca.text.toString() , tamanho.text.toString() , sexo.text.toString() , localizacao.text.toString(), data.text.toString(), descricao.text.toString(), "" , encodedImage, "fewf",  1)
-
+                val call = request.adicionarPonto(raca.text.toString() , tamanho.text.toString() , sexo.text.toString() , localizacao.text.toString(), data.text.toString(), descricao.text.toString(), "" , encodedImage, id,  1)
 
                 call.enqueue(object : Callback<OutputReports> {
                     override fun onResponse(call: Call<OutputReports>, response: Response<OutputReports>) {
                         if (response.isSuccessful) {
                             Log.d("***", "funcionou insert")
-                                val intent = Intent(applicationContext, MainActivity::class.java)
+                                val intent = Intent(applicationContext, AnuncioActivity::class.java)
                                  startActivity(intent)
                                  finish()
                         }
@@ -88,6 +103,9 @@ class InserirAparecimento : AppCompatActivity() {
 
                     override fun onFailure(call: Call<OutputReports>, t: Throwable) {
                         Log.d("arrr", "ErrorOccur:  ${t.message}" )
+                        val intent = Intent(applicationContext, AnuncioActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 })
             }
@@ -108,5 +126,23 @@ class InserirAparecimento : AppCompatActivity() {
         else {
             super.onActivityResult(requestCode, resultCode, data)
         }
+    }
+
+    private fun fetchCurrentUser() {
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(p0: DataSnapshot) {
+                currentUser = p0.getValue(User::class.java)
+                id = currentUser?.uid.toString()
+                Log.d("testeeee", "CurrentUser ${currentUser?.uid}")
+
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
     }
 }

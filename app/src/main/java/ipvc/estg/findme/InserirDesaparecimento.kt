@@ -15,9 +15,15 @@ import android.util.Log
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import ipvc.estg.findme.API.EndPoints
 import ipvc.estg.findme.API.OutputReports
 import ipvc.estg.findme.API.ServiceBuilder
+import ipvc.estg.findme.models.User
 import kotlinx.android.synthetic.main.activity_inserir_desaparecimento.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,11 +37,20 @@ private val IMAGE_PICK_CODE=1000;
 private val PERMISSION_CODE=1001;
 
 class InserirDesaparecimento : AppCompatActivity() {
+
+    companion object {
+        var currentUser: User? = null
+        var id:String = ""
+        val TAG = "LatestMessages"
+    }
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inserir_desaparecimento)
 
+        fetchCurrentUser()
 
         photo_btn.setOnClickListener{
             val tirarPhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -83,32 +98,24 @@ class InserirDesaparecimento : AppCompatActivity() {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
                 val encodedImage = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray())
 
-                val call = request.adicionarPonto(raca.text.toString() , tamanho.text.toString() , sexo.text.toString() , localizacao.text.toString(), data.text.toString(), descricao.text.toString(), chip.text.toString() , encodedImage, "fewf",  0)
-
-            /*    Log.d("***", "raca:" +raca.text.toString())
-                Log.d("***", "tamanho:" +tamanho.text.toString())
-                Log.d("***", "sexo:" +sexo.text.toString())
-                Log.d("***", "localizacao:" +localizacao.text.toString())
-                Log.d("***", "data:" +data.text.toString())
-                Log.d("***", "descricao:" +descricao.text.toString())
-                Log.d("***", "chip:" +chip.text.toString())
-                Log.d("***", "imagem:" +encodedImage)
-                Log.d("***", "vazio")*/
-
+                val call = request.adicionarPonto(raca.text.toString() , tamanho.text.toString() , sexo.text.toString() , localizacao.text.toString(), data.text.toString(), descricao.text.toString(), chip.text.toString() , encodedImage, id,  0)
 
                 call.enqueue(object : Callback<OutputReports> {
                     override fun onResponse(call: Call<OutputReports>, response: Response<OutputReports>) {
                         if (response.isSuccessful) {
                             Log.d("***", "funcionou insert")
-                        //    val intent = Intent(applicationContext, MainActivity::class.java)
-                       //     startActivity(intent)
-                       //     finish()
+                            val intent = Intent(applicationContext, AnuncioActivity::class.java)
+                            startActivity(intent)
+                            finish()
                         }
                     }
 
                     override fun onFailure(call: Call<OutputReports>, t: Throwable) {
                         //Toast.makeText(applicationContext, "${t.message}", Toast.LENGTH_SHORT).show()
                         Log.d("arrr", "ErrorOccur:  ${t.message}" )
+                        val intent = Intent(applicationContext, AnuncioActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 })
             }
@@ -166,4 +173,23 @@ class InserirDesaparecimento : AppCompatActivity() {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    private fun fetchCurrentUser() {
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+
+            override fun onDataChange(p0: DataSnapshot) {
+                currentUser = p0.getValue(User::class.java)
+                id = currentUser?.uid.toString()
+                Log.d("testeeee", "CurrentUser ${currentUser?.uid}")
+
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
+    }
+
 }
