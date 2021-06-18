@@ -55,7 +55,7 @@ class MenuTesteActivity : AppCompatActivity() {
             }
 
         viewpageradapter= ViewPagerAdapter(supportFragmentManager)
-        viewPager.adapter=viewpageradapter  //Binding PagerAdapter with ViewPager
+        viewPager.adapter = viewpageradapter  //Binding PagerAdapter with ViewPager
         tab_layout.setupWithViewPager(viewPager) //Binding ViewPager with TabLayout
 
         bottomNavigationView2.setOnNavigationItemSelectedListener {
@@ -64,12 +64,16 @@ class MenuTesteActivity : AppCompatActivity() {
                     true
                 }
                 R.id.ic_adicionar -> {
-                    val intent = Intent(this, AnuncioActivity::class.java)
+                    val intent = Intent(this, AnuncioActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                     startActivity(intent)
                     true
                 }
                 R.id.ic_chat -> {
-                    val intent = Intent(this, LatestMessagesActivity::class.java)
+                    val intent = Intent(this, LatestMessagesActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                     startActivity(intent)
                     true
                 }

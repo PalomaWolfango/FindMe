@@ -2,19 +2,25 @@ package ipvc.estg.findme.ui.inicio
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import ipvc.estg.findme.API.OutputReports
+import ipvc.estg.findme.API.Reports
 import ipvc.estg.findme.DetalhePost
 import ipvc.estg.findme.R
 import ipvc.estg.findme.dataclasses.ItemsViewModel
 import ipvc.estg.findme.MenuTesteActivity
+import java.util.*
 
-class CasoAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CasoAdapter.ViewHolder>() {
+class CasoAdapter(private val mList: List<Reports>) : RecyclerView.Adapter<CasoAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,24 +33,27 @@ class CasoAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapte
     }
 
     // binds the list items to a view
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val ItemsViewModel = mList[position]
 
         // sets the data to the imageview from our itemHolder class
-        holder.imageView.setImageResource(ItemsViewModel.image)
-        holder.raca.text = ItemsViewModel.raca
+        val decodedString = Base64.getDecoder().decode(ItemsViewModel.foto)
+        val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        holder.imageView.setImageBitmap(decodedByte)
+        holder.raca.text = ItemsViewModel.raca.toString()
         holder.data.text = ItemsViewModel.data
-        holder.localidade.text = ItemsViewModel.localidade
+        holder.localidade.text = ItemsViewModel.localizacao
 
         holder.itemView.setOnClickListener {
             // abrir activity de ver detalhes do caso
-            val intent = Intent(it.context, DetalhePost::class.java)
+            //val intent = Intent(it.context, DetalhePost::class.java)
             // To pass any data to next activity
-            //in tent.putExtra("casoId", CasoId.toString())
+            //intent.putExtra("idReport", ItemsViewModel.idReport.toString())
             // Start your next activity
-            it.context.startActivity(intent)
-            //Toast.makeText(it.context, "Clicked!", Toast.LENGTH_SHORT).show()
+            //it.context.startActivity(intent)
+            Toast.makeText(it.context, "Clicked report: " + ItemsViewModel.idReport, Toast.LENGTH_SHORT).show()
         }
 
     }

@@ -42,16 +42,20 @@ class LatestMessagesActivity : AppCompatActivity() {
         bottomNavigationView2.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ic_pagina_inicial -> {
+                    val intent = Intent(this, MenuTesteActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+                    startActivity(intent)
                     true
                 }
                 R.id.ic_adicionar -> {
-                    val intent = Intent(this, AnuncioActivity::class.java)
+                    val intent = Intent(this, AnuncioActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
                     startActivity(intent)
                     true
                 }
                 R.id.ic_chat -> {
-                    val intent = Intent(this, LatestMessagesActivity::class.java)
-                    startActivity(intent)
                     true
                 }
                 /*R.id.menu_sign_out -> {

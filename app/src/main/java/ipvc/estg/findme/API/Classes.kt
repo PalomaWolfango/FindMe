@@ -8,7 +8,7 @@ data class Reports(
     val raca: String,
     val tamanho: String,
     val sexo: String,
-    val localização: String,
+    val localizacao: String,
     val data: String,
     val descricao: String,
     val chip: String,

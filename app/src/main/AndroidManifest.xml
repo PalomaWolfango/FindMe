@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_findme_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AnuncioActivity"></activity>
+        <activity android:name=".AnuncioActivity" />
         <activity android:name=".DetalhePost" />
         <activity android:name=".MenuTesteActivity" />
         <activity android:name=".InserirAparecimento" />
         <activity android:name=".InserirDesaparecimento" />
-        <activity android:name=".messages.LatestMessagesActivity"></activity>
+        <activity android:name=".messages.LatestMessagesActivity" />
         <activity android:name=".login.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
