@@ -170,9 +170,7 @@ class InserirDesaparecimento : AppCompatActivity() {
         if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             val takenImage = data?.extras?.get("data") as Bitmap
             imagem.setImageBitmap(takenImage)
-            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,
-                data?.extras?.get("data") as Uri?
-            )
+            bitmap = takenImage
         }
         else if( requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK ){
             imagem.setImageURI(data?.data)

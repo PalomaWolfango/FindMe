@@ -160,9 +160,7 @@ class InserirAparecimento : AppCompatActivity() {
         if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             val takenImage = data?.extras?.get("data") as Bitmap
             imagemAP.setImageBitmap(takenImage)
-            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,
-                data?.extras?.get("data") as Uri?
-            )
+            bitmap = takenImage
         }
         else if( requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK ){
             imagemAP.setImageURI(data?.data)
