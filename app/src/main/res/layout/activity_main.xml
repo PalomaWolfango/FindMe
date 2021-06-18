@@ -44,7 +44,7 @@
         android:layout_marginRight="@dimen/DP03"
         android:lines="2"
         android:background="@drawable/edit_text_border"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:padding="10dp"/>
 
     <TextView
