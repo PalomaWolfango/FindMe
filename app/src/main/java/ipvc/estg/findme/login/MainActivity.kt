@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         if(intent.hasExtra("idAnimal")){
             val ss:String = intent.getStringExtra("idAnimal").toString()
             val intent = Intent(this, DetalhePost::class.java)
-            intent.putExtra("casoId", ss)
+            intent.putExtra("idCaso", ss)
             startActivity(intent)
         }
 
