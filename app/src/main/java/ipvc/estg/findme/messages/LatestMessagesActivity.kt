@@ -101,7 +101,9 @@ class LatestMessagesActivity : AppCompatActivity() {
 
 
     private fun refreshRecyclerViewMessages(){
+        progressBar3.visibility = View.VISIBLE
         adapter.clear()
+        progressBar3.visibility = View.GONE
         LatestMessagesMap.values.forEach{
             adapter.add(LatestMessageRow(it))
         }
