@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +16,7 @@ import android.util.Log
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.drawToBitmap
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,8 +25,12 @@ import com.google.firebase.database.ValueEventListener
 import ipvc.estg.findme.API.EndPoints
 import ipvc.estg.findme.API.OutputReports
 import ipvc.estg.findme.API.ServiceBuilder
+import ipvc.estg.findme.ml.MobilenetV110224Quant
 import ipvc.estg.findme.models.User
 import kotlinx.android.synthetic.main.activity_inserir_desaparecimento.*
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,10 +39,12 @@ import java.util.*
 import java.util.Base64;
 
 private const val REQUEST_CODE = 42
-private val IMAGE_PICK_CODE=1000;
-private val PERMISSION_CODE=1001;
+private val IMAGE_PICK_CODE=1000
+private val IMAGE_GAL_CODE=100
+private val PERMISSION_CODE=1001
 
 class InserirDesaparecimento : AppCompatActivity() {
+    lateinit var bitmap: Bitmap
 
     companion object {
         var currentUser: User? = null
@@ -50,6 +58,8 @@ class InserirDesaparecimento : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inserir_desaparecimento)
 
+        val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
+
         fetchCurrentUser()
 
         photo_btn.setOnClickListener{
@@ -60,6 +70,40 @@ class InserirDesaparecimento : AppCompatActivity() {
             }else{
                 Toast.makeText(this@InserirDesaparecimento, "eee", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        galeria_btn.setOnClickListener {
+            var intent : Intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+
+            startActivityForResult(intent, IMAGE_GAL_CODE)
+        }
+
+        predict2.setOnClickListener{
+            if (!this::bitmap.isInitialized){
+                Toast.makeText(this, "Selecione uma fotografia!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+            val model = MobilenetV110224Quant.newInstance(this)
+
+            var tbuffer = TensorImage.fromBitmap(resized)
+            var byteBuffer = tbuffer.buffer
+
+            // Creates inputs for reference.
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
+            inputFeature0.loadBuffer(byteBuffer)
+
+            // Runs model inference and gets result.
+            val outputs = model.process(inputFeature0)
+            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+            var max = getMax(outputFeature0.floatArray)
+
+            ed_txt_raca.setText(labels[max])
+
+            // Releases model resources if no longer used.
+            model.close()
         }
 
         inserirReport.setOnClickListener{
@@ -120,54 +164,23 @@ class InserirDesaparecimento : AppCompatActivity() {
                 })
             }
         }
-
-      /* galeria_btn.setOnClickListener{
-            //permissoes
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                    //permissao negada
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-                    requestPermissions(permissions, PERMISSION_CODE)
-                }else{
-                    //ja tem permissoes
-               //     pickImageGallery()
-                }
-            }else{
-                //SO baixo
-              //  pickImageGallery()
-            }
-        }*/
-
     }
-
-    private fun pickImageGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
-
-    }
-
-
-   /* override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
-            PERMISSION_CODE -> {
-                if(grantResults.size >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    pickImageGallery()
-                } else{
-                    Toast.makeText(this, "getString(R.string.naopermitiu)" , Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
         if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             val takenImage = data?.extras?.get("data") as Bitmap
             imagem.setImageBitmap(takenImage)
+            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,
+                data?.extras?.get("data") as Uri?
+            )
         }
         else if( requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK ){
             imagem.setImageURI(data?.data)
+            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, data?.data)
+        }
+        else if( requestCode == IMAGE_GAL_CODE && resultCode == Activity.RESULT_OK ){
+            imagem.setImageURI(data?.data)
+            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, data?.data)
         }
         else {
             super.onActivityResult(requestCode, resultCode, data)
@@ -192,4 +205,18 @@ class InserirDesaparecimento : AppCompatActivity() {
         })
     }
 
+    fun getMax(arr:FloatArray) : Int{
+        var ind = 0;
+        var min = 0.0f;
+
+        for(i in 0..1000)
+        {
+            if(arr[i] > min)
+            {
+                min = arr[i]
+                ind = i;
+            }
+        }
+        return ind
+    }
 }

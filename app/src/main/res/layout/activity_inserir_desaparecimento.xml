@@ -130,7 +130,7 @@
             android:lines="2" />
 
         <Button
-            android:id="@+id/gal"
+            android:id="@+id/predict2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout"
